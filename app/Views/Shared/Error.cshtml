@@ -1,0 +1,15 @@
+﻿@model dynamic
+
+
+@if (ViewData["Eroare"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Eroare:</strong> @ViewData["Eroare"]
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        Nu au fost furnizate detalii despre eroare.
+    </div>
+}

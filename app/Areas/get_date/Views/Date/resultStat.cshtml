@@ -1,0 +1,38 @@
+@model aplicatie_ciofuDragos.Areas.get_date.Models.Setari
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setari</title>
+</head>
+<body>
+    <h1>Detalii Setari</h1>
+
+    <div>
+        <strong>Algoritm:</strong> @Model.Alg
+    </div>
+    <div>
+        <strong>Procentul de antrenare:</strong> @Model.Training
+    </div>
+    <div>
+        <strong>Valoarea lui K:</strong> @Model.K
+    </div>
+    <div>
+        <strong>Numărul de fantome:</strong> @Model.Fantome
+    </div>
+    <div>
+        <strong>Opțiuni:</strong>
+       
+            <ul>
+                @foreach (var optiune in Model.Optiuni)
+                {
+                    <li>@optiune</li>
+                }
+            </ul>
+    
+    </div>
+
+</body>
+</html>

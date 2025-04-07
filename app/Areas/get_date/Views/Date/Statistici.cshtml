@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/js/site.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .custom-line {
+            border: none;
+            height: 3px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 20px 0;
+        }
+        .custom-checkbox{display:flex;
+        gap:12px;
+        align-items: center;
+       
+        }
+        .custom-checkbox label {
+    display: flex;
+    align-items: center; 
+    font-size: 14px; 
+    font-weight: bold;
+    gap: 5px;
+}
+    .custom_h4{padding-top: 5px;
+    padding-bottom: 10px;}
+
+    .custom_h5{padding-top: 20px;
+    padding-bottom: 10px;}
+        
+    </style>
+</head>
+<body>
+    <script>
+
+</script>
+    <h1 class="custom_h4" style="color: #2575fc;">Încarcă arhiva</h1>
+    <button class="btn btn-secondary px-2 py-3 fs-5 mx-1" type="button" onclick="document.getElementById('fileInput').click();">Încarcă</button>
+    <input id="fileInput" type="file" name="zipFile" accept=".zip" style="display: none;" />
+
+<div id="statusMessage"></div>
+    
+    <div id="statusMessage"></div>
+    <hr class="custom-line">
+    <h1 style="color: #2575fc;">Optiuni</h1>
+    <h5 class="custom_h4">Alege algoritmul:</h5>
+    <div id="div-alg"class="custom-checkbox" onchange="processCheckboxes()" >
+          <label><input id="nn" type="checkbox" name="NN" >NN</label>
+            <label><input id="knn" type="checkbox" name="K-NN" >K-NN</label>
+            <label><input id="eigen" type="checkbox" name="eigen" >eigen</label>
+            <label><input id="eigen-c" type="checkbox" name="eigen-class" >eigen class</label>
+            <label><input id="cod" type="checkbox" name="cod" >cod</label>
+    </div>
+    <h5 class="custom_h5">Alege datele de lucru:</h5>
+    <div id="div-norme"class="custom-checkbox" >
+          <label><input id="1" type="checkbox" name="1" >norma 1</label>
+            <label><input id="2"  type="checkbox" name="2" >norma 2</label>
+            <label><input id="infinit" type="checkbox" name="infinit" >norma infinit</label>
+            <label><input id="cos"  type="checkbox" name="cos" >norma cos</label>
+    </div>
+    <div class="custom-checkbox">
+    <label for="slider">Alege procentul maxim de antrenare:</label>
+    <input type="range" id="slider" min="40" max="90" step="10" value="50">
+    <span id="sliderValue">50</span>
+</div>
+<div class="custom-checkbox">
+    <label for="sliderK">Alege valoarea maxima a lui k (doar pentru K-NN):</label>
+    <input type="range" id="sliderK" min="1" max="21" step="1" value="3">
+    <span id="sliderValueK">3</span>
+</div>
+<div class="custom-checkbox">
+    <label for="sliderF">Alege numarul de maxim fantome:</label>
+    <input type="range" id="sliderF" min="0" max="100" step="1" value="20">
+    <span id="sliderValueF">20</span>
+</div>
+    <hr class="custom-line">
+        <p style="font-weight: 500;">Optiunea Csv va crea fisiere Csv pentru download. Plot va plota graficele corespunzatoare,eventual si grafice cu timpul de procesare (optiunea time).</p>
+        <p style="font-weight: 700;color:brown">Obligatoriu csv sau plot!</p>
+    <div id="div-opt"class="custom-checkbox"style="padding-bottom:10px">
+          <label><input id="rec" type="checkbox" name="plot">Plot</label>
+            <label><input id="time" type="checkbox" name="time">Time</label>
+            <label><input id="csv" type="checkbox" name="csv" >Csv</label>
+            <p id="erorare_optiuni"></p>
+          </div>
+    <div id="div-start"class="custom-checkbox">
+    <label for="start-b">Apasa pentru rulare -></label>
+    <button id="start-b" class="btn btn-primary px-2 py-10 fs-6 mx-2">Start</button>
+    <p id="eRor" style="color:red"></p>
+    <button id="verif-session" class="btn btn-primary px-2 py-10 fs-6 mx-2">Setarile Alese</button>
+    <p id="eRRor" style="color:rgb(0, 8, 255)"> </p>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,1 @@
+celery -A app_flask.celery worker --loglevel=INFO --pool=threads -c 5

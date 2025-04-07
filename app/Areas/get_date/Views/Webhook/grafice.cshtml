@@ -1,0 +1,78 @@
+@using Newtonsoft.Json
+@model aplicatie_ciofuDragos.Areas.get_date.Models.dateApi;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .vertical-layout{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:20px;
+        }
+        .custom-line {
+            border: none;
+            height: 3px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 20px 0;
+        }
+    </style>
+    <script src="/js/site.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="vertical-layout">
+        @if(Model?.path_csv == null && Model?.path_grafice == null && Model?.timp != null){
+            <h2 id="titlu_grafice" style="color:red">ESEC! Asigura-te, in cazul in care folosesti un algoritm bazat pe proiectii(eigen si eigen pe clase) , CA ai mai multe poze in dataset decat NUMARUL DE FANTOME MAXIM SELECTAT!</h2>
+        }
+        @if(Model == null) {
+            <h2 id="titlu_grafice">Aici se vor afisa rezultatele tale. Poate dura intre cateva secunde si 1-2 minute, depinde ce algoritm ai ales! Vei fi notificat cand datele sunt gata.</h2>
+        }
+        
+        
+        @if ((Model?.path_grafice != null && Model.path_grafice.Count > 0) || Model?.path_csv != null) {
+            <h3>Rezultatele tale.
+                Daca faci o alta cerere, asteapta noile rezultate
+                si apasa pe notificare sau da refresh la pagina.
+            </h3>
+            <hr class="custom-line">
+            <h5>Procesarea a durat @Model.timp secunde.</h5>
+            @if (Model.path_grafice != null && Model.path_grafice.Count > 0) {
+                <div id="album-container" class="album-container">
+                    <button id="prev-btn" class="nav-btn">◀</button>
+                    <img id="album-image" class="album-image" src="/@Model.path_grafice[0]" alt="nu ai grafice!">
+                    <button id="next-btn" class="nav-btn">▶</button>
+                    <script>
+                        let indexCurrent = 0;
+                        const images = @Html.Raw(JsonConvert.SerializeObject(Model.path_grafice));
+                        const albumImage = document.getElementById("album-image");
+
+                        document.getElementById("prev-btn").onclick = () => {
+                            indexCurrent = (indexCurrent - 1 + images.length) % images.length;
+                            albumImage.src = "/" + images[indexCurrent];
+                        };
+
+                        document.getElementById("next-btn").onclick = () => {
+                            indexCurrent = (indexCurrent + 1) % images.length;
+                            albumImage.src = "/" + images[indexCurrent];
+                        };
+                    </script>
+                </div>
+            }
+            @if (Model.path_csv != null && Model.path_csv.Count > 0) {
+                
+            }
+        } else {
+            <h4>Nu există grafice disponibile/fisiere csv momentan!</h4>
+        }
+
+        <button id="csvv" class="btn btn-primary px-4 py-1 fs-4 mx-2">CSV</button>
+        <button id="graficee" class="btn btn-primary px-4 py-1 fs-4 mx-2">GRAFICE</button>
+        <p id="csv_e" style="color:red"></p>
+        <p id="grafice_e" style="color:red"></p>
+    </div>
+</body>
+</html>
+
