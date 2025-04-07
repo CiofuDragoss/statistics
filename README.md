@@ -9,7 +9,7 @@ It allows the download of results (charts or CSV files) as archives, and it feat
 ![front Page](https://github.com/user-attachments/assets/8bd84082-44ab-4096-ac17-d03acb33db84)
 
 
-
+**The query feature (interogare ) has not been implemented. It is intended to allow the user to arbitrarily upload a picture and then check it against the uploaded database to see if a match is found.**
 ## Files
 
 - **app**  
